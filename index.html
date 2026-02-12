@@ -460,11 +460,11 @@
 
   <div class="wrap">
     <div class="logo-circle">
-      <img src="https://files.catbox.moe/vhyxvr.png" alt="ACS Logo">
+      <img src="https://i.imgur.com/oTHndaw.jpeg" alt="ACS Logo">
     </div>
 
     <div class="header">
-      <h1>⌖ A C S ⌖</h1>
+      <h1>⟦ A C S ⟧</h1>
       <p>Attack Cyber Security</p>
     </div>
 
@@ -579,29 +579,6 @@
     </div>
   </div>
 
-  <div class="music-player">
-      <div class="music-title">
-        <i class="fas fa-music"></i>
-        <span class="text" data-en="A C S " data-bn="A C S">A C S </span>
-      </div>
-      
-      <!-- ভোকারো এম্বেড -->
-      <div class="vocarro-container">
-        <iframe 
-          src="https://voca.ro/1nDZvwJQ2PrR" 
-          frameborder="1" 
-          allow="autoplay"
-          style="width: 100%; height: 200%; border: none;"
-          id="A C S"
-        ></iframe>
-      </div>
-      
-      <div style="font-size: 12px; color: #aaa; margin-top: 8px;">
-        <i class="fas fa-volume-up" style="color: var(--neon-red);"></i>
-        <span class="text" data-en="..." data-bn="...">...</span>
-      </div>
-    </div>
-    
   <!-- EmailJS SDK -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
@@ -615,12 +592,12 @@
     for (let i = 0; i < 12; i++) {
       const line = document.createElement('div');
       line.className = 'stream-line';
-      line.style.top = ${Math.random() * 100}%;
-      line.style.animationDelay = ${Math.random() * 5}s;
-      line.style.animationDuration = ${5 + Math.random() * 10}s;
-      line.style.opacity = ${0.1 + Math.random() * 0.3};
-      line.style.width = ${30 + Math.random() * 70}%;
-      line.style.left = ${Math.random() * 30}%;
+      line.style.top = `${Math.random() * 100}%`;
+      line.style.animationDelay = `${Math.random() * 5}s`;
+      line.style.animationDuration = `${5 + Math.random() * 10}s`;
+      line.style.opacity = `${0.1 + Math.random() * 0.3}`;
+      line.style.width = `${30 + Math.random() * 70}%`;
+      line.style.left = `${Math.random() * 30}%`;
       dataStream.appendChild(line);
     }
 
@@ -628,7 +605,7 @@
     function showMessage(text, type = 'info') {
       const messageDiv = document.getElementById('message');
       messageDiv.textContent = text;
-      messageDiv.className = message ${type};
+      messageDiv.className = `message ${type}`;
       
       // Auto hide success messages after 7 seconds
       if (type === 'success') {
@@ -665,7 +642,7 @@
           
           const fileName = this.files[0].name;
           const shortName = fileName.length > 15 ? fileName.substring(0, 12) + '...' : fileName;
-          label.innerHTML = <i class="fas fa-check"></i> ${shortName};
+          label.innerHTML = `<i class="fas fa-check"></i> ${shortName}`;
         } else {
           label.innerHTML = label.dataset.original;
           label.style.borderStyle = 'dashed';
@@ -682,7 +659,7 @@
       
       for (const field of requiredFields) {
         if (!formData.get(field) || formData.get(field).trim() === '') {
-          showMessage(Please fill in all required fields (${field.replace('_', ' ')}), 'error');
+          showMessage(`Please fill in all required fields (${field.replace('_', ' ')})`, 'error');
           return false;
         }
       }
@@ -760,7 +737,7 @@
         // Send email using EmailJS
         // REPLACE THESE WITH YOUR ACTUAL IDs FROM EMAILJS
         const response = await emailjs.send(
-          'service_pkk0r1a',      // ← Replace with your EmailJS Service ID
+          'service_ce01oel',      // ← Replace with your EmailJS Service ID
           'template_zedqvqr',     // ← Replace with your EmailJS Template ID
           {
             ...formDataObj,

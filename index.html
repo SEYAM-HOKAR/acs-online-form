@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ACS • Attack Cyber Security</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800&family=Rajdhani:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: 'Rajdhani', sans-serif;
+      color: #ffffff;
+      overflow-x: hidden;
+      background: #000;
+      padding: 15px;
+    }
+
+    /* ===== CYBER GREEN BACKGROUND ===== */
+    .bg {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, #000c06, #002511, #000c06);
+      background-size: 400% 400%;
+      animation: bgMove 10s ease infinite;
+      z-index: -3;
+    }
+
+    .bg::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(0, 255, 120, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 120, 0.08) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    .bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 50%, rgba(0, 255, 100, 0.1) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 20%, rgba(0, 200, 80, 0.08) 0%, transparent 50%);
+    }
+
+    @keyframes bgMove {
+      0% { background-position: 0% 50% }
+      50% { background-position: 100% 50% }
+      100% { background-position: 0% 50% }
+    }
+
+    /* ===== DATA STREAM EFFECT ===== */
+    .data-stream {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      opacity: 0.3;
+      overflow: hidden;
+    }
+
+    .stream-line {
+      position: absolute;
+      height: 2px;
+      width: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 255, 120, 0.6), transparent);
+      animation: streamMove 8s linear infinite;
+    }
+
+    @keyframes streamMove {
+      0% { transform: translateY(-100px); }
+      100% { transform: translateY(100vh); }
+    }
+
+    /* ===== MAIN CARD ===== */
+    .wrap {
+      max-width: 500px;
+      margin: 30px auto 20px;
+      padding: 22px 20px;
+      background: rgba(5, 20, 12, 0.85);
+      border-radius: 18px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(0, 255, 120, 0.4);
+      box-shadow: 0 0 35px rgba(0, 255, 100, 0.3),
+                  inset 0 0 15px rgba(0, 255, 100, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .wrap::before {
+      content: "";
+      position: absolute;
+      top: -8px;
+      left: -8px;
+      right: -8px;
+      bottom: -8px;
+      background: linear-gradient(45deg, 
+        transparent 0%, 
+        rgba(0, 255, 120, 0.1) 30%, 
+        transparent 70%);
+      z-index: -1;
+      border-radius: 26px;
+    }
+
+    /* ===== LOGO ===== */
+    .logo-circle {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      overflow: hidden;
+      position: absolute;
+      top: -25px;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 2px solid rgba(0, 255, 120, 0.8);
+      box-shadow: 0 0 20px rgba(0, 255, 100, 0.7);
+      z-index: 10;
+      background: rgba(5, 15, 10, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-circle img {
+      width: 75%;
+      height: 75%;
+      object-fit: contain;
+      filter: drop-shadow(0 0 6px rgba(0, 255, 120, 0.9));
+    }
+
+    /* ===== HEADER ===== */
+    .header {
+      text-align: center;
+      margin-top: 35px;
+      margin-bottom: 15px;
+    }
+
+    .header h1 {
+      font-family: 'Orbitron', monospace;
+      font-size: 28px;
+      letter-spacing: 4px;
+      color: #00FF88;
+      text-transform: uppercase;
+      text-shadow: 0 0 8px rgba(0, 255, 120, 0.7);
+      margin-bottom: 6px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .header h1::after {
+      content: "";
+      position: absolute;
+      bottom: -4px;
+      left: 10%;
+      width: 80%;
+      height: 1.5px;
+      background: linear-gradient(90deg, transparent, #00FF88, transparent);
+    }
+
+    .header p {
+      font-size: 13px;
+      opacity: 0.9;
+      color: #99FFCC;
+      font-weight: 500;
+    }
+
+    /* ===== SYSTEM TEXT ===== */
+    .sys {
+      text-align: center;
+      font-family: 'Orbitron', monospace;
+      font-size: 12px;
+      opacity: 0.9;
+      margin-bottom: 18px;
+      color: #55FFAA;
+      padding: 8px;
+      background: rgba(0, 255, 120, 0.05);
+      border-radius: 6px;
+      border: 1px solid rgba(0, 255, 120, 0.2);
+      line-height: 1.3;
+    }
+
+    /* ===== FORM ===== */
+    form {
+      margin-top: 8px;
+    }
+
+    .group {
+      margin-bottom: 14px;
+    }
+
+    .group span {
+      font-size: 11px;
+      opacity: 0.95;
+      display: block;
+      margin-bottom: 4px;
+      color: #AAFFCC;
+      font-weight: 600;
+    }
+
+    .group span i {
+      margin-right: 6px;
+      color: #55FF99;
+      font-size: 11px;
+    }
+
+    .group input,
+    .group select,
+    .group textarea {
+      width: 100%;
+      margin-top: 2px;
+      padding: 12px 14px;
+      border: none;
+      border-radius: 8px;
+      background: rgba(0, 255, 120, 0.08);
+      color: #fff;
+      outline: none;
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      border: 1px solid rgba(0, 255, 120, 0.2);
+      transition: all 0.3s;
+    }
+
+    .group textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .group input:focus,
+    .group select:focus,
+    .group textarea:focus {
+      border-color: rgba(0, 255, 120, 0.6);
+      box-shadow: 0 0 8px rgba(0, 255, 100, 0.3);
+      background: rgba(0, 255, 120, 0.12);
+    }
+
+    .group input::placeholder,
+    .group textarea::placeholder {
+      color: rgba(200, 255, 220, 0.6);
+      font-size: 13px;
+    }
+
+    /* ===== GRID ===== */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    /* ===== UPLOAD ===== */
+    .upload {
+      display: flex;
+      gap: 10px;
+      margin: 18px 0;
+    }
+
+    .upload label {
+      flex: 1;
+      padding: 12px;
+      text-align: center;
+      border-radius: 10px;
+      background: rgba(0, 255, 120, 0.1);
+      cursor: pointer;
+      border: 1px dashed rgba(0, 255, 120, 0.5);
+      font-size: 12px;
+      color: #AAFFCC;
+      transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .upload label:hover {
+      background: rgba(0, 255, 120, 0.15);
+      border-color: rgba(0, 255, 120, 0.8);
+    }
+
+    .upload label i {
+      font-size: 16px;
+      color: #55FF99;
+    }
+
+    /* ===== BUTTON ===== */
+    button {
+      width: 100%;
+      padding: 16px;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #00FF99, #00CC66);
+      color: #001a0f;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 1px;
+      cursor: pointer;
+      font-family: 'Orbitron', sans-serif;
+      text-transform: uppercase;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+      margin-top: 8px;
+      box-shadow: 0 4px 12px rgba(0, 255, 100, 0.3);
+    }
+
+    button:hover:not(:disabled) {
+      background: linear-gradient(135deg, #22FFAA, #00DD77);
+      box-shadow: 0 4px 15px rgba(0, 255, 100, 0.5);
+      transform: translateY(-2px);
+    }
+
+    button:active:not(:disabled) {
+      transform: translateY(1px);
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    button::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 40%;
+      height: 200%;
+      background: rgba(255, 255, 255, 0.2);
+      transform: rotate(30deg);
+      transition: all 0.5s;
+    }
+
+    button:hover::after {
+      left: 120%;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      margin-top: 18px;
+      text-align: center;
+      font-size: 10px;
+      opacity: 0.7;
+      color: #88FFBB;
+      padding-top: 12px;
+      border-top: 1px solid rgba(0, 255, 120, 0.2);
+      line-height: 1.4;
+    }
+
+    /* ===== MESSAGE BOXES ===== */
+    .message {
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      text-align: center;
+      font-size: 13px;
+      display: none;
+      animation: slideDown 0.3s ease;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .success {
+      background: rgba(46, 204, 113, 0.15);
+      border: 2px solid #2ecc71;
+      color: #2ecc71;
+      display: block;
+    }
+
+    .error {
+      background: rgba(231, 76, 60, 0.15);
+      border: 2px solid #e74c3c;
+      color: #e74c3c;
+      display: block;
+    }
+
+    .info {
+      background: rgba(52, 152, 219, 0.15);
+      border: 2px solid #3498db;
+      color: #3498db;
+      display: block;
+    }
+
+    .required {
+      color: #ff4757;
+      margin-left: 3px;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 550px) {
+      body {
+        padding: 10px;
+      }
+      
+      .wrap {
+        margin: 20px auto 15px;
+        padding: 20px 18px;
+      }
+      
+      .grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      
+      .header h1 {
+        font-size: 24px;
+        letter-spacing: 3px;
+      }
+      
+      .logo-circle {
+        width: 90px;
+        height: 90px;
+        top: -20px;
+      }
+      
+      .header {
+        margin-top: 30px;
+      }
+      
+      .group input,
+      .group select,
+      .group textarea {
+        padding: 10px 12px;
+        font-size: 13px;
+      }
+      
+      button {
+        padding: 14px;
+        font-size: 14px;
+      }
+      
+      .upload {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg"></div>
+  
+  <div class="data-stream">
+    <!-- Data stream lines will be generated by JS -->
+  </div>
+
+  <div class="wrap">
+    <div class="logo-circle">
+      <img src="https://files.catbox.moe/vhyxvr.png" alt="ACS Logo">
+    </div>
+
+    <div class="header">
+      <h1>⌖ A C S ⌖</h1>
+      <p>Attack Cyber Security</p>
+    </div>
+
+    <div class="sys">
+      ⌁ SYSTEM: ACS REGISTRATION PORTAL ⌁<br>
+      ⌁ ENCRYPTION: ACTIVE • DATA STREAM: SECURE ⌁
+    </div>
+
+    <div id="message" class="message"></div>
+
+    <form id="registrationForm">
+      <div class="group">
+        <span><i class="fas fa-user"></i>FULL NAME <span class="required">*</span></span>
+        <input type="text" name="full_name" placeholder="Enter your full name" required>
+      </div>
+
+      <div class="group">
+        <span><i class="fas fa-user-tag"></i>CODE NAME / ALIAS</span>
+        <input type="text" name="code_name" placeholder="Optional code name">
+      </div>
+
+      <div class="grid">
+        <div class="group">
+          <span><i class="fas fa-map-marker-alt"></i>DISTRICT <span class="required">*</span></span>
+          <input type="text" name="district" placeholder="Your district" required>
+        </div>
+        <div class="group">
+          <span><i class="fas fa-map-pin"></i>UPAZILA <span class="required">*</span></span>
+          <input type="text" name="upazila" placeholder="Your upazila" required>
+        </div>
+      </div>
+
+      <div class="group">
+        <span><i class="fas fa-home"></i>VILLAGE / AREA <span class="required">*</span></span>
+        <input type="text" name="village" placeholder="Your village/area" required>
+      </div>
+
+      <div class="grid">
+        <div class="group">
+          <span><i class="fas fa-birthday-cake"></i>AGE <span class="required">*</span></span>
+          <input type="number" name="age" placeholder="Your age" min="16" max="60" required>
+        </div>
+        <div class="group">
+          <span><i class="fas fa-venus-mars"></i>GENDER <span class="required">*</span></span>
+          <select name="gender" required>
+            <option value="">Select gender</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="group">
+          <span><i class="fas fa-mobile-alt"></i>MOBILE <span class="required">*</span></span>
+          <input type="tel" name="mobile" placeholder="Your mobile number" pattern="[0-9]{11}" required>
+        </div>
+        <div class="group">
+          <span><i class="fas fa-envelope"></i>GMAIL <span class="required">*</span></span>
+          <input type="email" name="user_email" placeholder="example@gmail.com" required>
+        </div>
+      </div>
+
+      <div class="group">
+        <span><i class="fab fa-facebook"></i>FACEBOOK PROFILE <span class="required">*</span></span>
+        <input type="url" name="facebook" placeholder="https://facebook.com/username" required>
+      </div>
+
+      <div class="group">
+        <span><i class="fas fa-home"></i>ADDRESS (OPTIONAL)</span>
+        <textarea name="address" placeholder="Detailed address..."></textarea>
+      </div>
+
+      <div class="upload">
+        <label>
+          <i class="fas fa-id-card"></i>
+          ID CARD / PHOTO 1
+          <input type="file" name="id_photo" hidden accept="image/*">
+        </label>
+        <label>
+          <i class="fas fa-camera"></i>
+          PROFILE PHOTO 2
+          <input type="file" name="profile_photo" hidden accept="image/*">
+        </label>
+      </div>
+
+      <div class="group">
+        <span><i class="fas fa-shield-alt"></i>SECURITY QUESTION <span class="required">*</span></span>
+        <select name="security_question" required>
+          <option value="">Select a security question</option>
+          <option>What was your first pet's name?</option>
+          <option>What is your mother's maiden name?</option>
+          <option>What city were you born in?</option>
+          <option>What is your favorite book?</option>
+        </select>
+      </div>
+
+      <div class="group">
+        <span><i class="fas fa-key"></i>SECURITY ANSWER <span class="required">*</span></span>
+        <input type="text" name="security_answer" placeholder="Your answer" required>
+      </div>
+
+      <button type="submit" id="submitBtn">
+        <i class="fas fa-paper-plane"></i> SUBMIT REGISTRATION
+      </button>
+    </form>
+
+    <div class="footer">
+      <p>© 2025 ATTACK CYBER SECURITY • ALL RIGHTS RESERVED</p>
+      <p style="margin-top: 4px; font-size: 9px;">ENCRYPTED CONNECTION • DATA TRANSMISSION SECURE</p>
+    </div>
+  </div>
+
+  <div class="music-player">
+      <div class="music-title">
+        <i class="fas fa-music"></i>
+        <span class="text" data-en="A C S " data-bn="A C S">A C S </span>
+      </div>
+      
+      <!-- ভোকারো এম্বেড -->
+      <div class="vocarro-container">
+        <iframe 
+          src="https://voca.ro/1nDZvwJQ2PrR" 
+          frameborder="1" 
+          allow="autoplay"
+          style="width: 100%; height: 200%; border: none;"
+          id="A C S"
+        ></iframe>
+      </div>
+      
+      <div style="font-size: 12px; color: #aaa; margin-top: 8px;">
+        <i class="fas fa-volume-up" style="color: var(--neon-red);"></i>
+        <span class="text" data-en="..." data-bn="...">...</span>
+      </div>
+    </div>
+    
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+  <script>
+    // Initialize EmailJS - Replace with your Public Key
+    // Get your keys from https://www.emailjs.com
+    emailjs.init("UvnQce-HayCloPItY"); // ← Replace with your EmailJS Public Key
+
+    // Generate data stream lines
+    const dataStream = document.querySelector('.data-stream');
+    for (let i = 0; i < 12; i++) {
+      const line = document.createElement('div');
+      line.className = 'stream-line';
+      line.style.top = ${Math.random() * 100}%;
+      line.style.animationDelay = ${Math.random() * 5}s;
+      line.style.animationDuration = ${5 + Math.random() * 10}s;
+      line.style.opacity = ${0.1 + Math.random() * 0.3};
+      line.style.width = ${30 + Math.random() * 70}%;
+      line.style.left = ${Math.random() * 30}%;
+      dataStream.appendChild(line);
+    }
+
+    // Show message function
+    function showMessage(text, type = 'info') {
+      const messageDiv = document.getElementById('message');
+      messageDiv.textContent = text;
+      messageDiv.className = message ${type};
+      
+      // Auto hide success messages after 7 seconds
+      if (type === 'success') {
+        setTimeout(() => {
+          messageDiv.style.display = 'none';
+        }, 7000);
+      }
+    }
+
+    // File size validation (5MB limit)
+    const MAX_FILE_SIZE = 5 * 1024 * 1024;
+
+    // Add visual feedback for file inputs
+    document.querySelectorAll('input[type="file"]').forEach(input => {
+      input.addEventListener('change', function() {
+        const label = this.parentElement;
+        if (!label.dataset.original) {
+          label.dataset.original = label.innerHTML;
+        }
+        
+        if (this.files.length > 0) {
+          // Check file size
+          if (this.files[0].size > MAX_FILE_SIZE) {
+            showMessage('File too large! Maximum 5MB allowed.', 'error');
+            this.value = '';
+            label.innerHTML = label.dataset.original;
+            label.style.borderColor = 'rgba(0, 255, 120, 0.5)';
+            return;
+          }
+          
+          label.style.borderStyle = 'solid';
+          label.style.borderColor = '#00FF88';
+          label.style.background = 'rgba(0, 255, 120, 0.2)';
+          
+          const fileName = this.files[0].name;
+          const shortName = fileName.length > 15 ? fileName.substring(0, 12) + '...' : fileName;
+          label.innerHTML = <i class="fas fa-check"></i> ${shortName};
+        } else {
+          label.innerHTML = label.dataset.original;
+          label.style.borderStyle = 'dashed';
+          label.style.borderColor = 'rgba(0, 255, 120, 0.5)';
+          label.style.background = 'rgba(0, 255, 120, 0.1)';
+        }
+      });
+    });
+
+    // Form validation
+    function validateForm(formData) {
+      // Required fields
+      const requiredFields = ['full_name', 'district', 'upazila', 'village', 'age', 'gender', 'mobile', 'user_email', 'facebook', 'security_question', 'security_answer'];
+      
+      for (const field of requiredFields) {
+        if (!formData.get(field) || formData.get(field).trim() === '') {
+          showMessage(Please fill in all required fields (${field.replace('_', ' ')}), 'error');
+          return false;
+        }
+      }
+
+      // Email validation
+      const email = formData.get('user_email');
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(email)) {
+        showMessage('Please enter a valid email address', 'error');
+        return false;
+      }
+
+      // Mobile validation (Bangladeshi format: 01XXXXXXXXX)
+      const mobile = formData.get('mobile');
+      const mobilePattern = /^01[3-9]\d{8}$/;
+      if (!mobilePattern.test(mobile)) {
+        showMessage('Please enter a valid Bangladeshi mobile number (01XXXXXXXXX)', 'error');
+        return false;
+      }
+
+      // URL validation for Facebook
+      const facebook = formData.get('facebook');
+      const urlPattern = /^(https?:\/\/)?(www\.)?facebook\.com\/.+/i;
+      if (!urlPattern.test(facebook)) {
+        showMessage('Please enter a valid Facebook profile URL', 'error');
+        return false;
+      }
+
+      // Age validation
+      const age = parseInt(formData.get('age'));
+      if (age < 16 || age > 60) {
+        showMessage('Age must be between 16 and 60', 'error');
+        return false;
+      }
+
+      return true;
+    }
+
+    // Form submission handler
+    document.getElementById('registrationForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      const form = this;
+      const button = document.getElementById('submitBtn');
+      const originalButtonHTML = button.innerHTML;
+      
+      // Show loading state
+      button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ENCRYPTING & TRANSMITTING...';
+      button.disabled = true;
+      
+      try {
+        // Collect form data
+        const formData = new FormData(form);
+        
+        // Add timestamp and subject
+        formData.append('submission_time', new Date().toISOString());
+        formData.append('subject', 'ACS Registration Form Submission');
+        
+        // Validate form
+        if (!validateForm(formData)) {
+          button.innerHTML = originalButtonHTML;
+          button.disabled = false;
+          return;
+        }
+        
+        // Convert FormData to object for EmailJS
+        const formDataObj = {};
+        for (let [key, value] of formData.entries()) {
+          // Skip file inputs for email
+          if (key !== 'id_photo' && key !== 'profile_photo') {
+            formDataObj[key] = value;
+          }
+        }
+        
+        // Send email using EmailJS
+        // REPLACE THESE WITH YOUR ACTUAL IDs FROM EMAILJS
+        const response = await emailjs.send(
+          'service_pkk0r1a',      // ← Replace with your EmailJS Service ID
+          'template_zedqvqr',     // ← Replace with your EmailJS Template ID
+          {
+            ...formDataObj,
+            to_email: 'acs.tanvir.ahmed.dipto@gmail.com'
+          }
+        );
+        
+        if (response.status === 200) {
+          showMessage('✅ Registration successful! Data encrypted and transmitted securely. You will be contacted within 24 hours.', 'success');
+          
+          // Reset form
+          form.reset();
+          
+          // Reset file inputs
+          document.querySelectorAll('input[type="file"]').forEach(input => {
+            const label = input.parentElement;
+            if (label.dataset.original) {
+              label.innerHTML = label.dataset.original;
+              label.style.borderStyle = 'dashed';
+              label.style.borderColor = 'rgba(0, 255, 120, 0.5)';
+              label.style.background = 'rgba(0, 255, 120, 0.1)';
+            }
+          });
+        }
+        
+      } catch (error) {
+        console.error('EmailJS Error:', error);
+        showMessage('❌ Transmission failed. Please check your connection and try again.', 'error');
+      } finally {
+        // Reset button state
+        button.innerHTML = originalButtonHTML;
+        button.disabled = false;
+      }
+    });
+
+    // Add a subtle encryption animation to the form
+    const form = document.getElementById('registrationForm');
+    form.addEventListener('focusin', (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || e.target.tagName === 'TEXTAREA') {
+        e.target.parentElement.style.transform = 'translateY(-2px)';
+        e.target.parentElement.style.transition = 'transform 0.3s';
+      }
+    });
+    
+    form.addEventListener('focusout', (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || e.target.tagName === 'TEXTAREA') {
+        e.target.parentElement.style.transform = 'translateY(0)';
+      }
+    });
+
+    // Initial info message
+    setTimeout(() => {
+      showMessage('ℹ️ All information will be securely transmitted to the ACS database', 'info');
+    }, 1000);
+  </script>
+</body>
+</html>
